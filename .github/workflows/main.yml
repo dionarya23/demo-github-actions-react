@@ -1,7 +1,7 @@
 on :
   push:
     branches:
-      - master
+    - master
 name: Deploy website
 jobs:
   web-deploy:
@@ -23,6 +23,7 @@ jobs:
     
     - name: List output files
       run: find build/ -print
+      
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
@@ -31,3 +32,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir:  build/
         server-dir: /home/digita50/yerapi.digitalnative.id/
+        protocol: ftps
+        port: 21
